@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS 24.18.1'
+    }
+
     environment {
         DOCKER_IMAGE = "rakeshsingh761/retail-frontend:latest"
     }
@@ -10,6 +14,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Verify Versions') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+                sh 'docker --version'
+                sh 'kubectl version --client'
             }
         }
 
@@ -33,19 +46,19 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-            withCredentials([usernamePassword(
-                credentialsId: 'dockerhub-creds',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS'
-        )]) {
-            sh '''
-            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-            docker push $DOCKER_IMAGE
-            docker logout
-            '''
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    docker push $DOCKER_IMAGE
+                    docker logout
+                    '''
+                }
+            }
         }
-    }
-}
 
         stage('Deploy to EKS') {
             steps {
