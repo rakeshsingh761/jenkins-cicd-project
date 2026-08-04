@@ -1,29 +1,70 @@
-import "./App.css";
-import TicTacToe from "./components/TicTacToe";
+import "./Home.css";
+import SnakeGame from "./components/SnakeGame/SnakeGame";
 
 function App() {
   return (
     <div className="container">
-      <h1>🚀 Retail Frontend</h1>
+      <div className="hero">
+        <h1>🚀 Retail Frontend</h1>
 
-      <h2>CI/CD Pipeline Deployment Successful</h2>
+        <h2>CI/CD Pipeline Deployment Successful</h2>
 
-      <p>This application has been successfully deployed using:</p>
+        <p>
+          This project demonstrates a complete DevOps CI/CD pipeline using
+          GitHub, Jenkins, Docker, Docker Hub and Amazon EKS.
+        </p>
 
-      <ul>
-        <li>✅ GitHub</li>
-        <li>✅ Jenkins</li>
-        <li>✅ Docker</li>
-        <li>✅ Docker Hub</li>
-        <li>✅ Kubernetes</li>
-        <li>✅ Amazon EKS</li>
-      </ul>
-      <TicTacToe />
+        <div className="status">✅ Successfully Deployed on Amazon EKS</div>
+      </div>
 
-      <h3>DevOps Project</h3>
-      <h3>DevOps Project - Webhook Test</h3>
+      <div className="tech-grid">
+        <div className="tech-card">
+          <h3>GitHub</h3>
+          <p>Source Code Management</p>
+        </div>
 
-      <p>Continuous Integration & Continuous Deployment</p>
+        <div className="tech-card">
+          <h3>Jenkins</h3>
+          <p>Continuous Integration</p>
+        </div>
+
+        <div className="tech-card">
+          <h3>Docker</h3>
+          <p>Containerization</p>
+        </div>
+
+        <div className="tech-card">
+          <h3>Docker Hub</h3>
+          <p>Image Registry</p>
+        </div>
+
+        <div className="tech-card">
+          <h3>Kubernetes</h3>
+          <p>Container Orchestration</p>
+        </div>
+
+        <div className="tech-card">
+          <h3>Amazon EKS</h3>
+          <p>Managed Kubernetes Cluster</p>
+        </div>
+      </div>
+
+      <div className="pipeline">
+        <div className="step">GitHub</div>
+        <div className="arrow">➡</div>
+
+        <div className="step">Jenkins</div>
+        <div className="arrow">➡</div>
+
+        <div className="step">Docker Hub</div>
+        <div className="arrow">➡</div>
+
+        <div className="step">Amazon EKS</div>
+      </div>
+
+      <div className="game-section">
+        <SnakeGame />
+      </div>
     </div>
   );
 }

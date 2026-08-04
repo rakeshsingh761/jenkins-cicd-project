@@ -66,6 +66,12 @@ pipeline {
                 sh 'kubectl apply -f k8s/service.yaml'
             }
         }
+        stage('Restart Deployment') {
+            steps {
+                sh 'kubectl rollout restart deployment retail-frontend'
+                sh 'kubectl rollout status deployment/retail-frontend'
+    }
+}
     }
 
     post {
