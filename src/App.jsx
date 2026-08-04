@@ -1,4 +1,5 @@
 import "./App.css";
+import TicTacToe from "./components/TicTacToe";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <li>✅ Kubernetes</li>
         <li>✅ Amazon EKS</li>
       </ul>
+      <TicTacToe />
 
       <h3>DevOps Project</h3>
       <h3>DevOps Project - Webhook Test</h3>
